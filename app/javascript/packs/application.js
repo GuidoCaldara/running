@@ -1,10 +1,19 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+var componentRequireContext = require.context("components", true)
+var ReactRailsUJS = require("react_ujs")
+ReactRailsUJS.useContext(componentRequireContext)
+import {renderMap} from "packs/show-map.js"
+import {imageSlide} from "packs/imageSlide.js"
+import {updateIndex} from "packs/index_form.js"
+import {renderIndexMap} from "packs/indexMap.js"
+import {updateMap} from "packs/indexMap.js"
+import {userAutocomplete} from "packs/autocomplete.js"
 
-console.log('Hello World from Webpacker')
+if (document.querySelector("#submit-photo-form") != null) {
+  autoUpload()
+}
+
+renderMap()
+imageSlide()
+updateIndex()
+renderIndexMap()
+userAutocomplete()

@@ -1,0 +1,77 @@
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+  </div>
+</div>
+
+
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <%= render "races/info_card", race: @race %>
+    </div>
+    <div class="col-md-6">
+      <div id="show-map" style="height: 360px; width:100%" data-markers="<%= @markers.to_json %>"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-3">
+  <div class="photo-form-container">
+    <%= render "photos/new", race: @race, photo: Photo.new%>
+  </div>
+  <%= render "photos/show", photos: @photos, photos_urls: @photo_urls %>
+</div>
+
+<div class="container">
+  <div class="review-form-container">
+    <%= render "reviews/new", race: @race, review: Review.new%>
+  </div>
+  <div class="col reviews-box">
+    <% @reviews.each do |review|%>
+      <%= render "reviews/show", r: review %>
+    <% end %>
+  </div>
+</div>
+
+<h3>Add a question</h3>
+<%= render "questions/new", race: @race, question: Question.new%>
+<div class="col reviews-box">
+  <% @questions.each do |question|%>
+    <%= question.title %>
+    <%= question.text %>
+    <% question.answers.each do |answer|%>
+      <div class="">
+        <%= render "answers/show", answer: answer %>
+      </div>
+    <% end %>
+    <div class="">
+      <%= render "answers/new", answer: Answer.new, question: question %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+input = document.querySelector("#photo_image")
+
+function formTrigger() {
+form = document.querySelector("#new_photo")
+console.log(input.value);
+Rails.fire(form, 'submit')
+document.querySelector("body").insertAdjacentHTML("afterbegin", "<div class='loading'>Loading</div>")
+}
+input.addEventListener("change", formTrigger, false)
+</script>

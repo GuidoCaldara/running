@@ -13,7 +13,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       ## Rememberable
       t.datetime :remember_created_at
-
+      t.string :facebook_picture_url
+      t.string :first_name
+      t.string :last_name
+      t.string :token
+      t.datetime :token_expiry
+      t.string :username
+      t.string :location
+      t.float :latitude
+      t.float :longitude
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at

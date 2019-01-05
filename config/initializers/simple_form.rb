@@ -38,6 +38,7 @@ SimpleForm.setup do |config|
     # Calculates maxlength from length validations for string inputs
     # and/or database column lengths
     b.optional :maxlength
+    config.label_text = lambda { |label, required| "#{label}" }
 
     # Calculate minlength from length validations for string inputs
     b.optional :minlength

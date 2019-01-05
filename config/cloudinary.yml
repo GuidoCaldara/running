@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: run-db
+  api_key: '914897865524452'
+  api_secret: lrx40KBHiPNWuGZ-H9UYfVZI6cI
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: run-db
+  api_key: '914897865524452'
+  api_secret: lrx40KBHiPNWuGZ-H9UYfVZI6cI
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: run-db
+  api_key: '914897865524452'
+  api_secret: lrx40KBHiPNWuGZ-H9UYfVZI6cI
+  enhance_image_tag: true
+  static_image_support: false

@@ -1,0 +1,8 @@
+
+    <div class="photos-container d-flex flex-wrap mt-3">
+      <% photos.each_with_index do |photo, index| %>
+        <div style="background-image: url('<%= cl_image_path photo.image %>')" class="photo-card mb-2 mr-2" data-index="<%= index %>">
+        </div>
+      <% end %>
+      <%= render "photos/carousel", photos_urls: photos_urls %>
+    </div>

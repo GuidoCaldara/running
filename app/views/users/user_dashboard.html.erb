@@ -1,0 +1,49 @@
+<div class="container py-5">
+  <div class="row my-3">
+    <div class="col-md-12 mx-auto">
+      <div class="card p-3">
+        <h1>Il tuo profilo
+          <span class="edit-profile-btn"><%= link_to "Modifica", edit_user_registration_path %> </span> 
+        </h1>
+        <p><strong>Username:</strong> <%= @user.username %></p>
+        <p><strong>Email:</strong> <%= @user.email %></p>
+        <p><strong>Località:</strong> <%= @user.location %></p>
+      </div>
+    </div>
+  </div>
+  <% if @user.photos.any? %>
+    <div class="row my-3">
+    <div class="col-md-12 mx-auto">
+      <div class="card p-3">
+        <h1>Le Foto che hai condiviso</h1>
+        <div class="photos-container d-flex flex-wrap mt-3">
+          <% @user.photos.each_with_index do |photo, index| %>
+          <div class="d-flex flex-column">
+            <div style="background-image: url('<%= cl_image_path photo.image %>')" class="photo-card mb-2 mr-2" data-id="<%= photo.id %>">
+            </div>
+            <div class="d-flex justify-content-between ">
+              <p><%= photo.race.name %></p>
+              <%= link_to  photo_path(photo.id), method: :delete do %>
+              <button class="p-0 btn btn-sm btn-danger" type="button" name="button">Elimina</button>
+              <%end %>
+            </div>
+
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if @user.reviews.any? %>
+  <div class="row my-3">
+  <div class="col-md-12 mx-auto">
+    <div class="card p-3">
+      <h1>Le recensioni che hai scritto</h1>
+    </div>
+  </div>
+</div>
+<% end %>
+
+</div>

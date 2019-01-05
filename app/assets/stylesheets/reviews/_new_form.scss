@@ -1,0 +1,40 @@
+.star-box-rate{
+  min-width: 125px;
+}
+
+
+#review_text{
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.review-form-container{
+  background: #ffffff;
+  border: none;
+    border-radius: 0;
+    color: #3c3c3c;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    min-width: 203px;
+    font-weight: 300;
+    outline: none;
+    padding: 9px 5px;
+    position: relative;
+    text-align: center;
+    outline: none;
+    border: 1px solid #bfbfbf;
+}
+
+.review-form-container:hover{
+  border: 1px solid #3c3c3c;
+
+}
+
+
+#new_review{
+  div{
+
+  }
+}

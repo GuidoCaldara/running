@@ -1,0 +1,17 @@
+
+<div id="#btnReviewModal" class="" data-toggle="modal" data-target="#reviewModal">
+  Lascia una recensione
+</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <button type="button" class="close modal-close-btn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      <div class="modal-body review-modal-body">
+        <%= render "reviews/form", race: race, review: review %>
+      </div>
+    </div>
+  </div>
+</div>

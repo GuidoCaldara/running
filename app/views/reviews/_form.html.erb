@@ -1,0 +1,12 @@
+<%= simple_form_for [race, review], remote: true do |f|%>
+<p class="mt-3">Hai corso <strong><%= race.name.upcase %></strong> ? Fai sapere ad altri runner come hai trovato la corsa.<br>
+  Puoi votare il percorso, l'organizzazione e il rapporto qualità/prezzo. Puoi anche lasciare un commento e raccontare la tua esperienza!</p>
+<div class="d-flex justify-center">
+  <%= render "reviews/rating_star" %>
+  <%= f.hidden_field :path_rate, value: 1%>
+  <%= f.hidden_field :organisation_rate, value: 1%>
+  <%= f.hidden_field :overall_rate, value: 1%>
+</div>
+<%= f.input :text, label: "Scrivi la tua recensione per #{race.name} " %>
+<%= f.button :submit, "Inserisci la recensione", class: "btn btn-secondary"%>
+<% end %>

@@ -1,1 +1,47 @@
+$blu: #4cb5f5;
+$blu-hover: #1da8fd;
+$green: #b3c100;
+$black: #2b2b2b;
+$dark: #34675c;
+$grey: #b7b8b6;
 @import "bootstrap";
+@import "activestorage";
+@import "loading_page";
+@import "photoswipecss";
+@import "races/pages_index";
+@import "components/index";
+@import "reviews/index";
+@import "user/index";
+
+
+
+body{
+  font-family: 'Roboto', sans-serif;
+  color: #717171 !important
+}
+a{
+  color: #717171 !important
+}
+
+.dark-text{
+  color: #3c3c3c !important
+}
+
+a.btn {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+p{
+  font-weight: 300 !important;
+  font-size: 14px;
+
+}
+
+input{
+  border-radius: 0px !important;
+}

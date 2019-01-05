@@ -1,0 +1,71 @@
+.filter-box {
+  padding: 4px 15px 11px;
+  border: 1px solid #cac6c63d;
+  border-radius: 4px;
+  margin-top: 11px;
+}
+
+.reset-filter-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  border: 1px solid #cac6c6cf;
+  border-radius: 60% !important;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: #4a4848cf;
+}
+
+.reset-filter-btn:hover {
+  border: 1px solid #5d5c5ccf;
+}
+
+.index-map {
+  height: 100vh;
+  width: 100%;
+  position: sticky !important;
+  top: 0;
+  overflow: hidden;
+}
+
+.filter-header {
+  padding: 10px 0 10px 9px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #e2e0e0;
+  color: #717171;
+  font-weight: 300;
+}
+
+.checkbox{
+  color: #717171;
+  font-weight: 300;
+
+}
+
+#race_filter {
+  margin-bottom: 10px;
+
+  div {
+    border-radius: 0;
+    background-color: white;
+    label{
+      color: #717171;
+      font-weight: 300;
+    }
+  }
+
+  input {
+    border-radius: 0;
+    border-color: #e2e0e0;
+  }
+}
+
+.filter-header:hover {
+
+}

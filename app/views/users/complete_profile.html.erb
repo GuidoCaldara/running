@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 mx-auto py-5">
+      <div class="card p-3">
+        <h4 class="text-center my-3">Benvenuto su RunningFORRUM, completa il tuo profilo per accedere alla piattaforma</h4>
+        <%= simple_form_for @user, :url => save_user_profile_path, :method => :patch do |f|%>
+          <%= f.input :username, label: "Inserisci il tuo username"  %>
+          <%= f.input :location, label: "Da dove vieni?"  %>
+          <%= f.submit "Salva" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

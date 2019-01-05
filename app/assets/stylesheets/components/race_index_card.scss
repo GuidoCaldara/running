@@ -1,0 +1,64 @@
+.race-index-card {
+  max-height: 200px;
+  min-height: 200px;
+  border: none !important;
+  border-radius: 0;
+}
+
+.race-name-card{
+    font-weight: 400 !important;
+    font-size: 16px;
+}
+
+.race-location-card{
+  font-weight: 400 !important;
+  font-size: 13px;
+
+}
+.race-date-card{
+  font-weight: 400 !important;
+  font-size: 13px;
+}
+
+.race-type-card{
+  font-weight: 400 !important;
+  font-size: 13px;
+
+}
+
+.hilight-card {
+  box-shadow: 0 0 32px #14141b;
+}
+
+
+.race-index-card:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.race-index-card-top {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 250px;
+  color: #dadada;
+
+  h4 {
+    font-size: 21px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
+
+.card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.card-link:hover {
+  text-decoration: none;
+  color: black;
+}

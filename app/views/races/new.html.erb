@@ -1,0 +1,60 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <%= simple_form_for @race do |f| %>
+        <%= f.input :name, label:"Nome della gara" %>
+        <%= f.input :distance_km, label:"Distanza in Km" %>
+        <div class="d-flex justify-content-around">
+          <div class="race-type-box" data-value="trail">
+            TRAIL
+          </div>
+          <div class="race-type-box" data-value="road">
+            STRADA
+          </div>
+          <div class="race-type-box" data-value="skyrace">
+            SKYRACE
+          </div>
+          <div class="race-type-box" data-value="vertical">
+            VERTICAL
+          </div>
+        </div>
+        <%= f.hidden_field :race_type %>
+        <%= f.input :elevation, label:"Dislivello positivo in metri" %>
+        <%= f.input :location, label:"Località"%>
+        <%= f.input :date, label:"Data", as: :string, type: :text%>
+        <%= f.input :description, label:"Racconta qualcosa della gara", as: :text%>
+        <%= f.input :price, label:"inserisci il prezzo" %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+flatpickr("#race_date", {});
+
+</script>
+
+<script type="text/javascript">
+  const boxes = document.querySelectorAll(".race-type-box")
+  boxes.forEach((e) => {
+    e.addEventListener("click", (c) =>{
+      boxes.forEach(e => e.classList.remove("race-type-box-selected"))
+      c.target.classList.add("race-type-box-selected")
+      document.querySelector("#race_race_type").value = c.target.dataset.value
+    })
+  })
+</script>
+
+
+<script type="text/javascript">
+var input = document.getElementById('race_location');
+var options = {
+types: ['(cities)'],
+};
+
+autocomplete = new google.maps.places.Autocomplete(input, options);
+
+</script>

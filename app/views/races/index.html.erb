@@ -1,0 +1,52 @@
+
+
+<div class="container-fluid mt-4">
+  <div id ="" class="row">
+    <div class="col-md-8">
+      <div class="filter-header"  data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">Filtra <i class="fas fa-search ml-1"></i></div>
+        <div class="collapse multi-collapse" id="filterCollapse">
+            <div class="">
+              <%= render "index_form" %>
+            </div>
+        </div>
+
+      <div class="row" id ="races-container">
+        <% @races.each do |race| %>
+          <%= render "race", race: race %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-4 p-0 ">
+      <div id="index-map" class="index-map" data-markers="<%= @markers.to_json %>"></div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+flatpickr("#date-range", {
+  mode: "range",
+  minDate: "today",
+  dateFormat: "Y-m-d"
+});
+</script>
+
+<script type="text/javascript">
+  document.querySelector("#reset-date").addEventListener("click", function(){
+    document.querySelector("#date-range").value = ""
+    let form = document.getElementById('race_filter');
+    Rails.fire(form, 'submit');
+  })
+
+  document.querySelector("#reset-location").addEventListener("click", function(){
+      document.querySelector("#race_location_filter").value = ""
+      let form = document.getElementById('race_filter');
+      Rails.fire(form, 'submit');
+    })
+
+</script>

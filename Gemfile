@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.3'
+gem 'will_paginate', '~> 3.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
@@ -9,20 +10,26 @@ gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'photoswipe-rails', '~> 4.1', '>= 4.1.2'
+gem 'react-rails'
+gem 'carrierwave', '~> 1.2'
+gem "google-cloud-storage", "~> 1.11", require: false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'cloudinary', '~> 1.9.1'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'devise'
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 gem 'simple_form'
+gem 'geocoder', '~> 1.3', '>= 1.3.7'
 gem "pundit"
-
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

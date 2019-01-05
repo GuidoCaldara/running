@@ -1,0 +1,48 @@
+#photo_image {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+#new_photo {
+}
+
+
+
+@media screen and (max-width: 768px) {
+  #new_photo {
+  }
+}
+
+
+
+
+
+#photo_label {
+  background: #ffffff;
+  border: none;
+  margin: 0px;
+  border-radius: 0;
+  color: #3c3c3c;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  min-width: 203px;
+  font-weight: 300;
+  outline: none;
+  padding: 9px 5px;
+  position: relative;
+  text-align: center;
+  border: 1px solid #bfbfbf;
+}
+
+#photo_label:hover{
+  border: 1px solid #3c3c3c;
+}
+.image_form_box {
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

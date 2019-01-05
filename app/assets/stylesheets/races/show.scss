@@ -1,0 +1,60 @@
+.photo-card {
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+  max-width: 200px;
+  opacity: 0.8;
+  flex-grow: 1;
+  min-width: 150px;
+}
+
+.photo-card:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.add-photo-card {
+  width: 150px;
+  height: 150px;
+}
+
+.navigate-btn-container{
+  p{
+  padding: 5px 15px;
+  font-weight: 400 !important;
+  border: 1px solid;
+  border-color: #bfbfbf;
+  cursor: pointer;
+  font-size: 12px
+}
+}
+
+.navigate-btn-container{
+  p:hover{
+    border-color: #3c3c3c
+  }
+}
+
+.missing-extra{
+  font-size: 15px !important;
+  font-weight: 400
+}
+
+.add-photo-card:hover {
+  cursor: pointer;
+}
+
+.forms-box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+}
+
+
+.photos-container{
+
+      background-color: #f7f7f7;
+      padding: 5px 8px 0px 8px;
+}

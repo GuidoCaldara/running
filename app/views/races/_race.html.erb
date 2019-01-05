@@ -1,0 +1,38 @@
+
+<% if (race.race_type == "road") %>
+  <% background = "roadbackground.jpg" %>
+<% else %>
+  <% background = "trailbackground.jpg"%>
+<% end %>
+
+<div class="col-sm-6 col-lg-4">
+<%= link_to race_path(race), class:"card-link" do  %>
+<div id="card-<%= race.id %>" class="mb-3 race-index-card card p-0">
+  <div class="d-flex flex-column justify-content-between p-2 race-index-card-top" style="background-image: url('/assets/<%= background %>')">
+      <!-- <div class="mr-2">
+        <p class="mb-0"><strong><%#= race.reviews.length %> Recensioni</strong></p>
+      </div> -->
+  </div>
+  <p class="mb-0 race-date-card"><i class="far fa-calendar-alt mb-0 mr-1"></i><span class="mr-3"><%= race.date.strftime("%d/%m/%Y") %></span><i class="fas fa-map-marked-alt mb-0 mr-1"></i> <%= race.location.upcase.split(" ")[0..1].join(" ")[0..-2] %> </p>
+  <h4 class="race-name-card mb-0"><strong><%= race.name %></strong></h4>
+  <div class="d-flex justify-content-between">
+    <div class="race-type-card d-flex flex-start">
+      <p class="mr-2"><%= race.type_translations %></p>
+      <p class="mr-2"><%= race.distance_km %> Km</p>
+      <% if race.elevation %>
+        <p class="">/ <%= race.elevation %>m d+</p>
+      <% end %>
+    </div>
+    <div class="race-type-card">
+      <p class="mb-0"><%= race.reviews.length %> Recensioni</p>
+    </div>
+</div>
+
+  <div class="d-flex justify-content-between">
+    <div class="pl-1 d-flex mb-0">
+
+    </div>
+  </div>
+</div>
+<% end %>
+</div>

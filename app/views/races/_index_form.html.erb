@@ -1,0 +1,40 @@
+<%= form_for("/races", method: "get", html:{id: "race_filter", class:"px-2"}, remote: :true) do |f| %>
+  <div class="race-location-input filter-box">
+    <label>Dove</label>
+    <div class="d-flex">
+      <input value ="" id="race_location_filter" type="text" name="location" class="form-control">
+      <div class="d-flex flex-column justify-content-center px-1">
+        <div id="reset-location" class="reset-filter-btn">
+            <i class="fas fa-times"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="race-dates-input filter-box ">
+    <label>Quando</label>
+    <div class="d-flex">
+      <input id="date-range" name="dates_range" class="bg-white form-control flatpickr flatpickr-input" type="text" placeholder="Inserisci il periodo" data-id="range" readonly="readonly">
+      <div class="d-flex flex-column justify-content-center px-1">
+        <div id="reset-date" class="reset-filter-btn">
+            <i class="fas fa-times"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="race-type-checkboxes filter-box ">
+    <label>Tipo di gara</label>
+    <div class="d-flex flex-wrap">
+      <% Race::RACE_TYPES.each do |x| %>
+        <%= render "checkboxes", params: "#{x[:params]}", value: "#{x[:value]}", label: "#{x[:label]}"%>
+      <% end %>
+    </div>
+  </div>
+  <div class="filter-box distance-type-checkboxes ">
+    <label>Distanza</label>
+    <div class="d-flex flex-wrap">
+      <% Race::DISTANCE_TYPES.each do |x| %>
+        <%= render "checkboxes", params: "#{x[:params]}", value: "#{x[:value]}", label: "#{x[:label]}"%>
+      <% end %>
+    </div>
+  </div>
+<% end %>

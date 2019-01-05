@@ -1,0 +1,31 @@
+<div class="card px-3 py-2">
+  <p class="mb-1 review-details">Scritta da <%= r.user.username %> il <%= r.created_at.strftime("%d/%m/%Y") %> </p>
+  <div class="d-flex flex-wrap star-rating-box-card">
+    <div class="star-rating-container-box">
+      <p class="mr-3 mb-0">Percorso:</p>
+      <p class="mb-2">
+        <% r.path_rate.times do  %>
+          <i class="review-star-rate fas fa-star"></i>
+        <% end %>
+      </p>
+    </div>
+    <div class="star-rating-container-box">
+      <p class="mr-3 mb-0">Organizzazione:</p>
+      <p class="mb-2">
+        <% r.organisation_rate.times do  %>
+          <i class="review-star-rate fas fa-star"></i>
+        <% end %>
+      </p>
+    </div>
+    <div class="star-rating-container-box">
+      <p class="mr-3 mb-0">Qualità/prezzo:</p>
+      <p class="mb-2">
+        <% r.overall_rate.times do  %>
+          <i class="review-star-rate fas fa-star"></i>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <h5>Commento:</h5>
+  <p class="mb-1"><%= r.text %></p>
+</div>

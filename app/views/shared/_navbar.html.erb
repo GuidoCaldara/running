@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <%= link_to "Profilo", user_dashboard_path, class:"nav-item nav-link" %>
+        <%= link_to "Aggiungi una gara", new_race_path,  class:"nav-item nav-link" %>
+        <%= link_to "LogOut", destroy_user_session_path, class:"nav-item nav-link", method: :delete%>
+      <% else %>
+        <div id="#btnSignInModal" class="nav-item nav-link" data-toggle="modal" data-target="#signInModal">
+          Accedi
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item w-50 text-center">
+          <a class="nav-link modal-nav-link-form active" id="signIn-tab" data-toggle="pill" href="#signIn" role="tab" aria-controls="signIn" aria-selected="true">Accedi</a>
+        </li>
+        <li class="nav-item w-50 text-center">
+          <a class="nav-link modal-nav-link-form" id="signUp-tab" data-toggle="pill" href="#signUp" role="tab" aria-controls="signUp" aria-selected="false">Registrati</a>
+        </li>
+      </ul>
+        <button type="button" class="close modal-close-btn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      <div class="py-1 modal-body review-modal-body">
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="signIn" role="tabpanel" aria-labelledby="signIn-tab">
+            <%= render "devise/sessions/new", resource: User.new %>
+          </div>
+          <div class="tab-pane fade" id="signUp" role="tabpanel" aria-labelledby="signUp-tab">
+            <%= render "devise/registrations/new", resource: User.new %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

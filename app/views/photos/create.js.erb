@@ -1,0 +1,47 @@
+
+document.querySelector(".loading").remove()
+
+<% if @photo.errors.any? %>
+  document.querySelector(".photo-form-container").innerHTML = '<%= j render "photos/new", race: @race, photo: Photo.new %>'
+  document.querySelector("body").insertAdjacentHTML("afterbegin", `<%= j render "shared/js_alert", messages: @photo.errors.full_messages %>`)
+  document.querySelector(".jsalert").style.top = window.pageYOffset + "px"
+<% else %>
+  var url = "<%= @photo.image.metadata['url'] || @photo.image.url %>"
+  var list = "<%= @race.photo_urls.to_json %>"
+  var container = document.querySelector(".photos-container")
+  var new_photo =`<div style="width:150px; height:150px; background-image: url(${url}" class="photo-card mr-2" data-index="<%= @race.photos.length - 1 %>"></div>`
+  container.insertAdjacentHTML("afterbegin", new_photo )
+  document.querySelector("#new_photo").reset()
+  document.querySelector("body").insertAdjacentHTML("afterbegin", `<%= j render "shared/js_alert", x: "Foto caricata correttamente!",messages: @photo.errors.full_messages %>`)
+  document.querySelector(".jsalert").style.top = window.pageYOffset + "px"
+  setTimeout(function(){
+    document.querySelector(".jsalert").remove();
+  }, 1500);
+
+  var carousel = document.querySelectorAll('.pswp')
+  var pswpElement = carousel[0];
+  var options = {
+    index: 0,
+    closeEl: true,
+    captionEl: true,
+    fullscreenEl: false,
+    zoomEl: false,
+    shareEl: false,
+    counterEl: true,
+    arrowEl: true,
+    preloaderEl: true
+};
+
+  document.querySelectorAll(".photo-card").forEach((e) => {
+    e.addEventListener("click", function () {
+      document.querySelectorAll('.pswp')[0].dataset.photo = list
+      items = JSON.parse(pswpElement.dataset.photos)
+      options.index = e.dataset.index
+      console.log(options.index);
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+      gallery.init();
+    })
+  })
+
+
+<% end %>

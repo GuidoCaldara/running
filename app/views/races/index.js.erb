@@ -1,0 +1,7 @@
+var template = "<%= j render @races %>"
+var el = document.getElementById('races-container');
+el.innerHTML = template;
+
+list = "<%= @markers.to_json %>"
+
+updateMap(list)
