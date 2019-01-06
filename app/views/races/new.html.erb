@@ -1,35 +1,78 @@
-
 <div class="container">
   <div class="row">
-    <div class="col-md-6 mx-auto">
-      <%= simple_form_for @race do |f| %>
-        <%= f.input :name, label:"Nome della gara" %>
-        <%= f.input :distance_km, label:"Distanza in Km" %>
-        <div class="d-flex justify-content-around">
-          <div class="race-type-box" data-value="trail">
-            TRAIL
-          </div>
-          <div class="race-type-box" data-value="road">
-            STRADA
-          </div>
-          <div class="race-type-box" data-value="skyrace">
-            SKYRACE
-          </div>
-          <div class="race-type-box" data-value="vertical">
-            VERTICAL
+    <div class="col-md-10 col-lg-6 mx-auto">
+      <div class="card p-3">
+      <%= simple_form_for @race, html: { class: 'no-overflow' } do |f| %>
+      <div class="mb-4 d-flex justify-content-around">
+        <div id="nav-tab-1" class="nav-tab d-flex align-items-center flex-fill text-center selected-tab">
+          Iniziamo...
+        </div>
+        <div id="nav-tab-2" class="nav-tab d-flex align-items-center flex-fill text-center">
+          Informazioni Techniche
+        </div>
+        <div id="nav-tab-3" class="nav-tab d-flex align-items-center flex-fill text-center">
+          Dove e quando?
+        </div>
+        <div id="nav-tab-4" class="nav-tab d-flex align-items-center flex-fill text-center">
+          Qualcosa in più...
+        </div>
+      </div>
+      <div class="tab-content form-card">
+        <div id="stepTab-1" class=" tab-box big-tab" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <%= f.input :name, label:"Nome della gara" %>
+          <div class="d-flex justify-content-end">
+            <button data-step ="2" class="btn step-button" type="button" name="button">next</button>
           </div>
         </div>
-        <%= f.hidden_field :race_type %>
-        <%= f.input :elevation, label:"Dislivello positivo in metri" %>
-        <%= f.input :location, label:"Località"%>
-        <%= f.input :date, label:"Data", as: :string, type: :text%>
-        <%= f.input :description, label:"Racconta qualcosa della gara", as: :text%>
-        <%= f.input :price, label:"inserisci il prezzo" %>
-        <%= f.button :submit %>
+        <div class="tab-box hidden-tab " id="stepTab-2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <%= f.input :distance_km, label:"Distanza in Km" %>
+          <div class="d-flex justify-content-around">
+            <div class="race-type-box" data-value="trail">
+              TRAIL
+            </div>
+            <div class="race-type-box" data-value="road">
+              STRADA
+            </div>
+            <div class="race-type-box" data-value="skyrace">
+              SKYRACE
+            </div>
+            <div class="race-type-box" data-value="vertical">
+              VERTICAL
+            </div>
+          </div>
+          <%= f.hidden_field :race_type %>
+          <%= f.input :elevation, label:"Dislivello positivo in metri" %>
+          <div class="d-flex justify-content-between">
+            <button data-step="1" class="btn step-button" type="button" name="button">previous</button>
+            <button data-step="3" class="btn step-button" type="button" name="button">next</button>
+          </div>
+        </div>
+        <div class="tab-box hidden-tab" id="stepTab-3" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+          <%= f.input :location, label:"Località"%>
+          <%= f.input :date, label:"Data", as: :string, type: :text%>
+          <%= f.input :price, label:"inserisci il prezzo" %>
+          <div class="d-flex justify-content-between">
+            <button data-step="2" class="btn step-button" type="button" name="button">previous</button>
+            <button data-step="4" class="btn step-button" type="button" name="button">next</button>
+          </div>
+        </div>
+        <div class="tab-box hidden-tab " id="stepTab-4" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <%= f.input :description, label:"Racconta qualcosa della gara", as: :text%>
+          <div class="d-flex justify-content-between">
+            <button data-step="3" class="btn step-button" type="button" name="button">previous</button>
+            <%= f.button :submit %>
+          </div>
+        </div>
+      </div>
       <% end %>
+    </div>
     </div>
   </div>
 </div>
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
@@ -46,6 +89,33 @@ flatpickr("#race_date", {});
       document.querySelector("#race_race_type").value = c.target.dataset.value
     })
   })
+</script>
+<script type="text/javascript">
+  let tabs = document.querySelectorAll(".tab-box")
+  let navTabs = document.querySelectorAll(".nav-tab")
+  const clearTabs = () =>{
+    tabs.forEach((tab) => {
+      tab.style.display = "none"
+    })
+    navTabs.forEach((tab) => {
+      tab.classList.remove("selected-tab")
+    })
+  }
+  const showTab = (id) =>{
+    document.querySelector(`#stepTab-${id}`).style.display= "block"
+    document.querySelector(`#nav-tab-${id}`).classList.add("selected-tab")
+  }
+
+  let buttons  = document.querySelectorAll(".step-button")
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      clearTabs()
+      showTab(button.dataset.step)
+    })
+  })
+
+
+
 </script>
 
 
