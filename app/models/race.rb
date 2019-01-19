@@ -9,12 +9,32 @@ class Race < ApplicationRecord
   geocoded_by :location
   before_save :geocode
 
+
+  validates :name, :race_type, :distance_km, :location, :description, :date, :price, presence: true
+  validates :race_type,  inclusion: { in: %w(trail skyrace verticl road)}
+  validates :distance_km, numericality: { only_integer: true, greater_than: 0, less_than: 500 }
+  validates :location, length: { minimum: 3, maximum: 50 }
+  validates :elevation, numericality: { only_integer: true, greater_than: 0, less_than: 30000 }
+  validates :elevation, presence: true, if: :need_elevation
+  validates :description, length: { minimum: 50, maximum: 700 }
+  validate :has_lat_lng, on: :save
+
+
+
   scope :filter_by_race_type, -> (array) { where(race_type: array) }
   scope :filter_by_distance_type, -> (array) { where(distance_type: array) }
   scope :filter_by_first_date, -> (date) { where("date > ?",  Date.parse((date).split[0])) }
   scope :filter_by_last_date, -> (date) { where("date < ?",  Date.parse((date).split[2])) }
   self.per_page = 20
 
+
+  def need_elevation
+    self.race_type != "road"
+  end
+
+  def has_lat_lng
+    self.latitude && self.lngitude
+  end
   def set_distance_type
     if self.distance_km <= 21
       self.distance_type = "short"
@@ -64,51 +84,51 @@ class Race < ApplicationRecord
   end
 
 
-  RACE_TYPES = [
-    {
-      params: 'race_type[]',
-      value: 'trail',
-      label: 'Trail'
-    },
-    {
-      params: 'race_type[]',
-      value: 'skyrace',
-      label: 'Skyrace'
-    },
-    {
-      params: 'race_type[]',
-      value: 'road',
-      label: 'Strada'
-    },
-    {
-      params: 'race_type[]',
-      value: 'vertical',
-      label: 'Vertical'
-    },
-  ]
-
-
-  DISTANCE_TYPES = [
-    {
-      params: 'distance_type[]',
-      value: 'short',
-      label: '1-21Km'
-    },
-    {
-      params: 'distance_type[]',
-      value: 'medium',
-      label: '22-42Km'
-    },
-    {
-      params: 'distance_type[]',
-      value: 'long',
-      label: '43-100Km'
-    },
-    {
-      params: 'distance_type[]',
-      value: 'ultra',
-      label: ' > 100 km '
-    }
-  ].freeze
+  # RACE_TYPES = [
+  #   {
+  #     params: 'race_type[]',
+  #     value: 'trail',
+  #     label: 'Trail'
+  #   },
+  #   {
+  #     params: 'race_type[]',
+  #     value: 'skyrace',
+  #     label: 'Skyrace'
+  #   },
+  #   {
+  #     params: 'race_type[]',
+  #     value: 'road',
+  #     label: 'Strada'
+  #   },
+  #   {
+  #     params: 'race_type[]',
+  #     value: 'vertical',
+  #     label: 'Vertical'
+  #   },
+  # ]
+  #
+  #
+  # DISTANCE_TYPES = [
+  #   {
+  #     params: 'distance_type[]',
+  #     value: 'short',
+  #     label: '1-21Km'
+  #   },
+  #   {
+  #     params: 'distance_type[]',
+  #     value: 'medium',
+  #     label: '22-42Km'
+  #   },
+  #   {
+  #     params: 'distance_type[]',
+  #     value: 'long',
+  #     label: '43-100Km'
+  #   },
+  #   {
+  #     params: 'distance_type[]',
+  #     value: 'ultra',
+  #     label: ' > 100 km '
+  #   }
+  # ].freeze
 
 end

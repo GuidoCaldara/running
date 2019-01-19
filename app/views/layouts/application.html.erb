@@ -15,11 +15,8 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <% if !notice.nil? %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if !alert.nil? %>
-      <p class="alert"><%= alert %></p>
+    <% if !notice.nil? || !alert.nil?%>
+    <%= render "shared/alert" %>
     <% end %>
 
     <%= yield %>

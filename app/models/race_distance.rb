@@ -1,0 +1,2 @@
+class RaceDistance < ApplicationRecord
+end

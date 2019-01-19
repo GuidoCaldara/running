@@ -24,16 +24,16 @@
   <div class="race-type-checkboxes filter-box ">
     <label>Tipo di gara</label>
     <div class="d-flex flex-wrap">
-      <% Race::RACE_TYPES.each do |x| %>
-        <%= render "checkboxes", params: "#{x[:params]}", value: "#{x[:value]}", label: "#{x[:label]}"%>
+      <% RaceType.all.each do |x| %>
+        <%= render "checkboxes", params: "race_type[]", value: "#{x.typology}", label: "#{x.typology}"%>
       <% end %>
     </div>
   </div>
   <div class="filter-box distance-type-checkboxes ">
     <label>Distanza</label>
     <div class="d-flex flex-wrap">
-      <% Race::DISTANCE_TYPES.each do |x| %>
-        <%= render "checkboxes", params: "#{x[:params]}", value: "#{x[:value]}", label: "#{x[:label]}"%>
+      <% RaceDistance.all.each do |x| %>
+        <%= render "checkboxes", params: "distance_type[]", value: "#{x.distance_type}", label: "#{x.label}"%>
       <% end %>
     </div>
   </div>

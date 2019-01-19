@@ -17,10 +17,11 @@ $grey: #b7b8b6;
 
 body{
   font-family: 'Roboto', sans-serif;
-  color: #717171 !important
+  color: #717171 !important;
 }
 a{
-  color: #717171 !important
+  color: #717171 !important;
+  font-weight: 300 !important
 }
 
 .dark-text{
@@ -44,4 +45,9 @@ p{
 
 input{
   border-radius: 0px !important;
+  font-weight: 300 !important
+}
+textarea{
+  border-radius: 0px !important;
+  font-weight: 300 !important
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_054010) do
+ActiveRecord::Schema.define(version: 2019_01_14_110303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 2018_12_03_054010) do
     t.datetime "updated_at", null: false
     t.index ["race_id"], name: "index_questions_on_race_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "race_distances", force: :cascade do |t|
+    t.string "distance_type"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "race_types", force: :cascade do |t|
+    t.string "typology"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "races", force: :cascade do |t|

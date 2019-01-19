@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-lg-6 mx-auto">
-      <div class="card p-3">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <div class="card form-race-card p-3">
       <%= simple_form_for @race, html: { class: 'no-overflow' } do |f| %>
       <div class="mb-4 d-flex justify-content-around">
         <div id="nav-tab-1" class="nav-tab d-flex align-items-center flex-fill text-center selected-tab">
@@ -17,15 +17,23 @@
           Qualcosa in più...
         </div>
       </div>
-      <div class="tab-content form-card">
+      <div class="tab-content form-card form-race-box">
         <div id="stepTab-1" class=" tab-box big-tab" role="tabpanel" aria-labelledby="v-pills-home-tab">
           <%= f.input :name, label:"Nome della gara" %>
           <div class="d-flex justify-content-end">
-            <button data-step ="2" class="btn step-button" type="button" name="button">next</button>
+            <button data-step ="2" class="right-step-btn btn step-button" type="button" name="button">Avanti</button>
           </div>
         </div>
         <div class="tab-box hidden-tab " id="stepTab-2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-          <%= f.input :distance_km, label:"Distanza in Km" %>
+          <div class="row">
+            <div class="col-m-6 col-sm-12">
+              <%= f.input :distance_km, label:"Distanza in Km" %>
+            </div>
+            <div class="col-m-6 col-sm-12">
+              <%= f.input :elevation, label:"Dislivello positivo in metri" %>
+            </div>
+          </div>
+          <label class="form-control-label integer required" >Tipo di Gara </label>
           <div class="d-flex justify-content-around">
             <div class="race-type-box" data-value="trail">
               TRAIL
@@ -41,10 +49,9 @@
             </div>
           </div>
           <%= f.hidden_field :race_type %>
-          <%= f.input :elevation, label:"Dislivello positivo in metri" %>
           <div class="d-flex justify-content-between">
-            <button data-step="1" class="btn step-button" type="button" name="button">previous</button>
-            <button data-step="3" class="btn step-button" type="button" name="button">next</button>
+            <button data-step="1" class="left-step-btn btn step-button" type="button" name="button">Indietro</button>
+            <button data-step="3" class="right-step-btn btn step-button" type="button" name="button">Avanti</button>
           </div>
         </div>
         <div class="tab-box hidden-tab" id="stepTab-3" role="tabpanel" aria-labelledby="v-pills-messages-tab">
@@ -52,15 +59,15 @@
           <%= f.input :date, label:"Data", as: :string, type: :text%>
           <%= f.input :price, label:"inserisci il prezzo" %>
           <div class="d-flex justify-content-between">
-            <button data-step="2" class="btn step-button" type="button" name="button">previous</button>
-            <button data-step="4" class="btn step-button" type="button" name="button">next</button>
+            <button data-step="2" class="left-step-btn btn step-button" type="button" name="button">Indietro</button>
+            <button data-step="4" class=" right-step-btn btn step-button" type="button" name="button">Avanti</button>
           </div>
         </div>
         <div class="tab-box hidden-tab " id="stepTab-4" role="tabpanel" aria-labelledby="v-pills-settings-tab">
           <%= f.input :description, label:"Racconta qualcosa della gara", as: :text%>
           <div class="d-flex justify-content-between">
-            <button data-step="3" class="btn step-button" type="button" name="button">previous</button>
-            <%= f.button :submit %>
+            <button data-step="3" class="left-step-btn btn step-button" type="button" name="button">Indietro</button>
+            <%= f.button :submit, class: "right-step-btn btn step-button"%>
           </div>
         </div>
       </div>
@@ -115,16 +122,5 @@ flatpickr("#race_date", {});
   })
 
 
-
-</script>
-
-
-<script type="text/javascript">
-var input = document.getElementById('race_location');
-var options = {
-types: ['(cities)'],
-};
-
-autocomplete = new google.maps.places.Autocomplete(input, options);
 
 </script>

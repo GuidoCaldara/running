@@ -17,8 +17,31 @@
   background-color: orange;
 }
 
-
-
 .hidden-tab {
     display: none
+}
+
+.form-race-box{
+  min-height: 300px;
+  max-height: 300px
+}
+
+.right-step-btn{
+  position: absolute;
+bottom: 10px;
+right: 10px
+
+}
+
+.left-step-btn{
+  position: absolute;
+bottom: 10px;
+left: 10px
+}
+
+
+#race_description{
+  min-height: 180px;
+  max-height: 180px;
+  overflow-y: scroll;
 }

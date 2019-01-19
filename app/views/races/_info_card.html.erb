@@ -1,4 +1,4 @@
-<div class="card p-3 mb-3">
+<div class="card p-3 mb-5">
   <p class ="m-0 dark-text "><strong><%= race.race_type.capitalize %></strong></p>
   <h1 class ="m-0 mb-2 dark-text"><%= race.name %></h1>
   <div class="d-flex flex-wrap">
@@ -12,18 +12,10 @@
   <p><%= race.description %></p>
   <p><strong class="dark-text">Prezzo</strong>: <%= race.price %>€</p>
   <div class="d-flex justify-content-start">
-    <% if current_user.reviews.where(race: @race).empty? %>
+    <% if current_user && current_user.reviews.where(race: @race).empty? %>
       <div class="review-form-container">
         <%= render "reviews/new", race: @race, review: Review.new%>
       </div>
     <% end %>
-
-    <!-- <p class="mr-3 mb-0" onclick="location.href='#photos';">Foto</p> -->
-    <!-- <p class="mb-0"onclick="location.href='#reviews';">Recensioni</p> -->
   </div>
-
-  <!-- <p>Tipo Distanza: <%#= race.distance_type %></p>
-  <p>Stagione: <%#= race.season %></p>
-  <p>Lat: <%#= race.latitude %></p>
-  <p>Lng: <%#= race.longitude %></p> -->
 </div>

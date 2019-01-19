@@ -9,4 +9,14 @@ const userAutocomplete = () => {
 }
 
 
+const raceFormAutocomplete = () => {
+  var input = document.getElementById('race_location');
+  var options = {
+  types: ['(cities)'],
+  };
+  let autocomplete = new google.maps.places.Autocomplete(input, options);
+
+}
+
 export { userAutocomplete }
+export { raceFormAutocomplete }

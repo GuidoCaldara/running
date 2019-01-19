@@ -1,0 +1,2 @@
+class RaceType < ApplicationRecord
+end
