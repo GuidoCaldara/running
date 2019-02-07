@@ -14,7 +14,8 @@
   overflow: hidden;
 }
 .selected-tab {
-  background-color: orange;
+  background-color: #4fb4ff;
+  border-bottom: none !important
 }
 
 .hidden-tab {
@@ -22,8 +23,8 @@
 }
 
 .form-race-box{
-  min-height: 300px;
-  max-height: 300px
+  min-height: 450px;
+  padding-bottom: 30px
 }
 
 .right-step-btn{
@@ -41,7 +42,19 @@ left: 10px
 
 
 #race_description{
-  min-height: 180px;
-  max-height: 180px;
+  min-height: 350px;
+  max-height: 350px;
   overflow-y: scroll;
+}
+
+
+#form-tab-new-race {
+  border: 1px solid #ced4da
+}
+
+
+.tab-race-form{
+
+    font-size: 13px;
+    padding: 10px;
 }

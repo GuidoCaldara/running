@@ -2,15 +2,43 @@
   <p class ="m-0 dark-text "><strong><%= race.race_type.capitalize %></strong></p>
   <h1 class ="m-0 mb-2 dark-text"><%= race.name %></h1>
   <div class="d-flex flex-wrap">
-    <p class ="mr-4 mb-1 dark-text"><i class="far fa-calendar-alt mb-0 mr-1"></i><%= race.date.strftime("%d/%m/%Y") %></p>
+    <p class ="mr-4 mb-1 dark-text"><i class="far fa-calendar-alt mb-0 mr-1"></i><%= race.next_edition_date.strftime("%d/%m/%Y") %></p>
     <p class ="mr-4 mb-1 dark-text"><i class="fas fa-road mb-0 mr-1"></i> <%= race.distance_km %>Km</p>
     <p class ="mr-4 mb-1 dark-text"><i class="fas fa-map-marked-alt mb-0 mr-1"></i><%= race.location %></p>
     <% if @race.elevation %>
       <p class ="mr-4 dark-text"><i class="fas fa-mountain mr-1"></i><%= race.elevation %></p>
     <% end %>
   </div>
+
   <p><%= race.description %></p>
-  <p><strong class="dark-text">Prezzo</strong>: <%= race.price %>€</p>
+  <p><strong class="dark-text">Prima edizione</strong><%= race.first_edition %></p>
+
+  <% if race.subscription_start && race.subscription_start %>
+    <p><strong class="dark-text">Periodo iscrizioni</strong>: Dal <%= race.subscription_start.strftime("%d/%m/%Y") %> al <%= race.subscription_end.strftime("%d/%m/%Y") %></p>
+  <% end %>
+
+  <p><strong class="dark-text">Prezzo</strong>: <%= race.third_price %>€</p>
+
+  <% if race.first_price_start && race.first_price_end %>
+    <p class="mb-1"><strong class="dark-text">Sconti sull'iscrizione </strong></p>
+    <p class="mb-0" >Dal <%= race.first_price_start.strftime("%d/%m/%Y") %> al <%= race.first_price_end.strftime("%d/%m/%Y") %>: <%= race.first_price %>€</p>
+  <% end %>
+  <% if race.second_price_start && race.second_price_end %>
+      <p class="mb-0">Dal <%= race.second_price_start.strftime("%d/%m/%Y") %> al <%= race.second_price_end.strftime("%d/%m/%Y") %>: <%= race.second_price %>€</p>
+  <% end %>
+
+  <div class="d-flex mt-3">
+    <% if race.website %>
+      <a href="https://<%= race.website %>"> <i class="fas fa-link"></i></a>
+    <% end %>
+    <% if race.facebook_page %>
+      <a href="<%= race.facebook_page %>"> <i class="fab fa-facebook-square"></i></a>
+    <% end %>
+    <% if race.instagram_page %>
+      <a href="<%= race.instagram_page %>"> <i class="fab fa-instagram"></i></a>
+    <% end %>
+  </div>
+
   <div class="d-flex justify-content-start">
     <% if current_user && current_user.reviews.where(race: @race).empty? %>
       <div class="review-form-container">

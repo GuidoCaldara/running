@@ -10,27 +10,41 @@ class Race < ApplicationRecord
   before_save :geocode
 
 
-  validates :name, :race_type, :distance_km, :location, :description, :date, :price, presence: true
-  validates :race_type,  inclusion: { in: %w(trail skyrace verticl road)}
-  validates :distance_km, numericality: { only_integer: true, greater_than: 0, less_than: 500 }
+  validates :name, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :race_type, presence: true, inclusion: { in: %w(trail skyrace vertical)}
+  validates :distance_km, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 500 }
+  validates :elevation, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 30000 }
+  validates :location, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :description, presence: true, length: { minimum: 30, maximum: 50 }
+  validates :website, presence: true, length: { minimum: 6, maximum: 50 }, :if => lambda {|attr| attr.present?}
+
+  validates :first_price, numericality: { only_integer: true, greater_than: 0, less_than: 500 },  :if => lambda {|attr| attr.present?}
+  validates :second_price, numericality: { only_integer: true, greater_than: 0, less_than: 500 },  :if => lambda {|attr| attr.present?}
+  validates :third_price, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 500 }, :if => lambda {|attr| attr.present?}
+  validate :goodies, length: { minimum: 6, maximum: 50 }, :if => lambda {|attr| attr.present?}
+
+  validates :next_edition_date, presence: true
+  validates :subscription_start, :subscription_end, presence: true
   validates :location, length: { minimum: 3, maximum: 50 }
   validates :elevation, numericality: { only_integer: true, greater_than: 0, less_than: 30000 }
-  validates :elevation, presence: true, if: :need_elevation
-  validates :description, length: { minimum: 50, maximum: 700 }
   validate :has_lat_lng, on: :save
 
+  t.date "first_edition"
+  t.date "first_price_start"
+  t.date "first_price_end"
+  t.date "second_price_start"
+  t.date "second_price_end"
+  t.date "third_price_start"
+  t.date "third_price_end"
+  t.text "goodies"
 
 
   scope :filter_by_race_type, -> (array) { where(race_type: array) }
   scope :filter_by_distance_type, -> (array) { where(distance_type: array) }
-  scope :filter_by_first_date, -> (date) { where("date > ?",  Date.parse((date).split[0])) }
-  scope :filter_by_last_date, -> (date) { where("date < ?",  Date.parse((date).split[2])) }
+  scope :filter_by_first_date, -> (date) { where("next_edition_date > ?",  Date.parse((date).split[0])) }
+  scope :filter_by_last_date, -> (date) { where("next_edition_date < ?",  Date.parse((date).split[2])) }
   self.per_page = 20
 
-
-  def need_elevation
-    self.race_type != "road"
-  end
 
   def has_lat_lng
     self.latitude && self.lngitude
@@ -48,11 +62,11 @@ class Race < ApplicationRecord
   end
 
   def set_season
-    if (self.date.month >= 12 || self.date.month <=2)
+    if (self.next_edition_date.month >= 12 || self.next_edition_date.month <=2)
       self.season = "winter"
-    elsif (self.date.month >= 3 || self.date.month <= 5)
+    elsif (self.next_edition_date.month >= 3 || self.next_edition_date.month <= 5)
       self.season = "spring"
-    elsif (self.date.month >= 6 || self.date.month <= 8)
+    elsif (self.next_edition_date.month >= 6 || self.next_edition_date.month <= 8)
       self.distance_type = "spring"
     else
      self.distance_type = "autumn"

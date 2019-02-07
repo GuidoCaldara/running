@@ -13,7 +13,7 @@
         <p class="mb-0"><strong><%#= race.reviews.length %> Recensioni</strong></p>
       </div> -->
   </div>
-  <p class="mb-0 race-date-card"><i class="far fa-calendar-alt mb-0 mr-1"></i><span class="mr-3"><%= race.date.strftime("%d/%m/%Y") %></span><i class="fas fa-map-marked-alt mb-0 mr-1"></i> <%= race.location.upcase.split(" ")[0..1].join(" ")[0..-2] %> </p>
+  <p class="mb-0 race-date-card"><i class="far fa-calendar-alt mb-0 mr-1"></i><span class="mr-3"><%= race.next_edition_date.strftime("%d/%m/%Y") %></span><i class="fas fa-map-marked-alt mb-0 mr-1"></i> <%= race.location.upcase.split(" ")[0..1].join(" ")[0..-2] %> </p>
   <h4 class="race-name-card mb-0"><strong><%= race.name %></strong></h4>
   <div class="d-flex justify-content-between">
     <div class="race-type-card d-flex flex-start">

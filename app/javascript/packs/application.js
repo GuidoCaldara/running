@@ -10,7 +10,9 @@ import {renderIndexMap} from "packs/indexMap.js"
 import {updateMap} from "packs/indexMap.js"
 import {userAutocomplete} from "packs/autocomplete.js"
 import {raceFormAutocomplete} from "packs/autocomplete.js"
-
+import {animateTab} from "packs/new_race_form/tab.js"
+import {raceTypeSelect} from "packs/new_race_form/race_type_select.js"
+import {datesValidation} from "packs/new_race_form/dates_validation.js"
 if (document.querySelector("#submit-photo-form") != null) {
   autoUpload()
 }
@@ -20,7 +22,7 @@ if (document.querySelector("#submit-photo-form") != null) {
 flatpickr("#date-range", {
   mode: "range",
   minDate: "today",
-  dateFormat: "Y-m-d"
+  dateFormat: "d-m-Y"
 });
 
 renderMap()
@@ -29,3 +31,7 @@ updateIndex()
 renderIndexMap()
 userAutocomplete()
 raceFormAutocomplete()
+
+raceTypeSelect()
+animateTab()
+datesValidation()

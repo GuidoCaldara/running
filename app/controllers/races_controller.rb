@@ -8,14 +8,14 @@ class RacesController < ApplicationController
     @races = @races.filter_by_first_date(params["dates_range"]) if params["dates_range"].present?
     @races = @races.filter_by_last_date(params["dates_range"]) if params["dates_range"].present? && params["dates_range"].split[2]
     @races = @races.near(params["location"], 50) if params["location"].present?
-    @races = @races.order(date: :asc).limit(50)
+    @races = @races.order(next_edition_date: :asc).limit(50)
 
     @markers = @races.map do |race|
   {
     lng: race.longitude,
     lat: race.latitude,
     name: race.name,
-    date: race.date,
+    date: race.next_edition_date,
     id: race.id,
     type: race.race_type.capitalize,
     distance_km: race.distance_km
@@ -69,8 +69,7 @@ end
   end
 
   def race_params
-    params.require(:race).permit(:name, :description, :race_type, :distance_km, :elevation, :date, :location, :price, :website, :subscription_link)
+    params.require(:race).permit(:name, :description, :race_type, :distance_km, :elevation, :website, :subscription_link, :next_edition_date, :elevation, :location, :third_price, :website, :subscription_link, :first_price, :second_price, :third_price, :first_price_start, :first_price_end, :second_price_start, :second_price_end, :first_edition, :instagram_page, :facebook_page, :video, :subscription_start, :subscription_end, :goodies)
   end
-
 
 end

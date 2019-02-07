@@ -1,0 +1,30 @@
+  <%= f.input :name, label:"Nome della gara" %>
+  <%= f.input :location, label:"Località"%>
+  <%= f.input :next_edition_date, label:"Data", as: :string, type: :text%>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= f.input :distance_km, label:"Distanza in Km" %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.input :elevation, label:"Dislivello positivo in metri" %>
+    </div>
+  </div>
+  <label class="form-control-label integer required" >Tipo di Gara </label>
+  <div class="d-flex mb-3 justify-content-around">
+    <div class="race-type-box" data-value="trail">
+      TRAIL
+    </div>
+    <div class="race-type-box" data-value="road">
+      STRADA
+    </div>
+    <div class="race-type-box" data-value="skyrace">
+      SKYRACE
+    </div>
+    <div class="race-type-box" data-value="vertical">
+      VERTICAL
+    </div>
+  </div>
+  <%= f.hidden_field :race_type %>
+  <div class="d-flex justify-content-end">
+    <button data-step ="2" class="right-step-btn btn step-button" type="button" name="button">Avanti</button>
+  </div>
