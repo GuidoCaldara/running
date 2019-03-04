@@ -1,15 +1,11 @@
-
+l<div class="container-fluid mt-4">
+    <%= render "index_form" %>
+</div>
 
 <div class="container-fluid mt-4">
   <div id ="" class="row">
-    <div class="col-md-8">
-      <div class="filter-header"  data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">Filtra <i class="fas fa-search ml-1"></i></div>
-        <div class="collapse multi-collapse" id="filterCollapse">
-            <div class="">
-              <%= render "index_form" %>
-            </div>
-        </div>
 
+    <div class="col-md-8">
       <div class="row" id ="races-container">
         <% @races.each do |race| %>
           <%= render "race", race: race %>

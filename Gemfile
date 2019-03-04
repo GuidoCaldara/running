@@ -25,6 +25,7 @@ gem 'cloudinary', '~> 1.9.1'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'devise'
+
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 gem 'simple_form'
 gem 'geocoder', '~> 1.3', '>= 1.3.7'

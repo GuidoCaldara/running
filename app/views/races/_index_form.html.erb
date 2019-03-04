@@ -1,40 +1,85 @@
 <%= form_for("/races", method: "get", html:{id: "race_filter", class:"px-2"}, remote: :true) do |f| %>
-  <div class="race-location-input filter-box">
-    <label>Dove</label>
-    <div class="d-flex">
-      <input value ="" id="race_location_filter" type="text" name="location" class="form-control">
-      <div class="d-flex flex-column justify-content-center px-1">
-        <div id="reset-location" class="reset-filter-btn">
+<div id="the-basics">
+  <input class="typeahead" type="text" placeholder="States of USA">
+</div>
+
+<div class="row">
+  <div class="col-md-6 pr-0">
+    <div class="race-location-input filter-box">
+      <label>Dove</label>
+      <div class="d-flex">
+        <input value="" id="race_location_filter" type="text" name="location" class="form-control">
+        <div class="d-flex flex-column justify-content-center px-1">
+          <div id="reset-location" class="reset-filter-btn">
             <i class="fas fa-times"></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="race-dates-input filter-box ">
-    <label>Quando</label>
-    <div class="d-flex">
-      <input id="date-range" name="dates_range" class="bg-white form-control flatpickr flatpickr-input" type="text" placeholder="Inserisci il periodo" data-id="range" readonly="readonly">
-      <div class="d-flex flex-column justify-content-center px-1">
-        <div id="reset-date" class="reset-filter-btn">
+  <div class="col-md-6 pl-0">
+    <div class="race-dates-input filter-box ">
+      <label>Quando</label>
+      <div class="d-flex">
+        <input id="date-range" name="dates_range" class="bg-white form-control flatpickr flatpickr-input" type="text" placeholder="Inserisci il periodo" data-id="range" readonly="readonly">
+        <div class="d-flex flex-column justify-content-center px-1">
+          <div id="reset-date" class="reset-filter-btn">
             <i class="fas fa-times"></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="race-type-checkboxes filter-box ">
-    <label>Tipo di gara</label>
-    <div class="d-flex flex-wrap">
-      <% RaceType.all.each do |x| %>
-        <%= render "checkboxes", params: "race_type[]", value: "#{x.typology}", label: "#{x.typology}"%>
-      <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-6 pr-0">
+    <div class="filter-box distance-type-checkboxes">
+      <label>Distanza</label>
+      <div class="d-flex flex-wrap">
+        <% RaceDistance.all.each do |x| %>
+          <%= render "checkboxes", params: "distance_type[]", value: "#{x.distance_type}", label: "#{x.label}"%>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="filter-box distance-type-checkboxes ">
-    <label>Distanza</label>
-    <div class="d-flex flex-wrap">
-      <% RaceDistance.all.each do |x| %>
-        <%= render "checkboxes", params: "distance_type[]", value: "#{x.distance_type}", label: "#{x.label}"%>
-      <% end %>
+  <div class="col-md-6 pl-0">
+    <div class="race-type-checkboxes filter-box">
+      <label>Tipo di gara</label>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-wrap type-race-box">
+          <% RaceType.all.each do |x| %>
+            <%= render "checkboxes", params: "race_type[]", value: "#{x.typology}", label: "#{x.typology}"%>
+          <% end %>
+        </div>
+        <div class="form-box-selector">
+          Reset
+        </div>
+
+      </div>
     </div>
   </div>
+
+</div>
+
 <% end %>
+
+<script type="text/javascript">
+let form = document.getElementById('race_filter');
+   let formBoxes = document.querySelectorAll(".form-box-selector")
+   formBoxes.forEach((box)=>{
+     box.addEventListener("click", function(e){
+       let box = document.querySelector(`#${e.target.dataset.id}`)
+       box.checked ? box.checked = false : box.checked = true
+       bigDiv = document.querySelector(`[data-id="${e.target.dataset.id}"]`)
+       bigDiv.classList.toggle("filter-box-selected")
+       Rails.fire(form, 'submit')
+     })
+   })
+</script>
+
+
+<script type="text/javascript">
+
+
+</script>

@@ -1,3 +1,33 @@
-.card{
-  border-radius: 0px
+.card {
+  border-radius: 8px;
+  box-shadow: 4px 4px 25px 1px rgba(232, 232, 232, 0.75);
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 4px 4px 25px 1px rgba(175, 175, 175, 0.75);
+
+}
+
+.small-img-card {
+  background-size: cover;
+  background-position: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.card p {
+  font-size: 16px;
+}
+
+.race-type {
+  font-size: 13px !important;
+  letter-spacing: 2px;
+}
+
+.race-info-card {
+  p {
+    font-size: 13px;
+    color: #8e8e8e;
+  }
 }

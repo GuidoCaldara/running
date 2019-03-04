@@ -21,22 +21,20 @@ class Race < ApplicationRecord
   validates :first_price, numericality: { only_integer: true, greater_than: 0, less_than: 500 },  :if => lambda {|attr| attr.present?}
   validates :second_price, numericality: { only_integer: true, greater_than: 0, less_than: 500 },  :if => lambda {|attr| attr.present?}
   validates :third_price, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 500 }, :if => lambda {|attr| attr.present?}
-  validate :goodies, length: { minimum: 6, maximum: 50 }, :if => lambda {|attr| attr.present?}
+  validates :goodies, length: { minimum: 6, maximum: 50 }, :if => lambda {|attr| attr.present?}
 
   validates :next_edition_date, presence: true
   validates :subscription_start, :subscription_end, presence: true
-  validates :location, length: { minimum: 3, maximum: 50 }
-  validates :elevation, numericality: { only_integer: true, greater_than: 0, less_than: 30000 }
   validate :has_lat_lng, on: :save
 
-  t.date "first_edition"
-  t.date "first_price_start"
-  t.date "first_price_end"
-  t.date "second_price_start"
-  t.date "second_price_end"
-  t.date "third_price_start"
-  t.date "third_price_end"
-  t.text "goodies"
+  # t.date "first_edition"
+  # t.date "first_price_start"
+  # t.date "first_price_end"
+  # t.date "second_price_start"
+  # t.date "second_price_end"
+  # t.date "third_price_start"
+  # t.date "third_price_end"
+  # t.text "goodies"
 
 
   scope :filter_by_race_type, -> (array) { where(race_type: array) }

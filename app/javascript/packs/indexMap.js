@@ -1,7 +1,7 @@
 
 
 
-window.renderIndexMap = function() {
+window.renderIndexMap = function(){
   window.bounds = new google.maps.LatLngBounds();
   window.markerArray = []
   var infowindow = new google.maps.InfoWindow();

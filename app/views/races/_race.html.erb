@@ -5,34 +5,23 @@
   <% background = "trailbackground.jpg"%>
 <% end %>
 
-<div class="col-sm-6 col-lg-4">
+<div class="col-md-12 col-lg-6">
 <%= link_to race_path(race), class:"card-link" do  %>
-<div id="card-<%= race.id %>" class="mb-3 race-index-card card p-0">
-  <div class="d-flex flex-column justify-content-between p-2 race-index-card-top" style="background-image: url('/assets/<%= background %>')">
-      <!-- <div class="mr-2">
-        <p class="mb-0"><strong><%#= race.reviews.length %> Recensioni</strong></p>
-      </div> -->
-  </div>
-  <p class="mb-0 race-date-card"><i class="far fa-calendar-alt mb-0 mr-1"></i><span class="mr-3"><%= race.next_edition_date.strftime("%d/%m/%Y") %></span><i class="fas fa-map-marked-alt mb-0 mr-1"></i> <%= race.location.upcase.split(" ")[0..1].join(" ")[0..-2] %> </p>
-  <h4 class="race-name-card mb-0"><strong><%= race.name %></strong></h4>
-  <div class="d-flex justify-content-between">
-    <div class="race-type-card d-flex flex-start">
-      <p class="mr-2"><%= race.type_translations %></p>
-      <p class="mr-2"><%= race.distance_km %> Km</p>
-      <% if race.elevation %>
-        <p class="">/ <%= race.elevation %>m d+</p>
-      <% end %>
-    </div>
-    <div class="race-type-card">
-      <p class="mb-0"><%= race.reviews.length %> Recensioni</p>
-    </div>
-</div>
+  <div id="card-<%= race.id %>" class="mb-3 card">
+    <div class="d-flex w-100">
+      <div class="w-75 p-3">
+        <p class="race-type mb-3"><%= race.race_type.upcase %></p>
+        <h5 class="mb-3"><%= race.name.truncate(25) %> </h5>
+        <p class="mb-0"><%= race.location.upcase.split(" ")[0..1].join(" ")[0..-2] %> </p>
+        <div class="d-flex race-info-card">
+          <p class="mb-0"><%= race.next_edition_date.strftime("%d-%m-%Y") %></p>
+          <p class="mb-0 ml-3"><%= race.distance_km %>km/ <%= race.elevation %>d+ </p>
+        </div>
+      </div>
+      <div class="small-img-card w-25" style="background-image: url('/assets/<%= background %>')">
 
-  <div class="d-flex justify-content-between">
-    <div class="pl-1 d-flex mb-0">
-
+      </div>
     </div>
   </div>
-</div>
 <% end %>
 </div>
